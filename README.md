@@ -9,4 +9,4 @@ Quickly and easily add Font Awesome icons while using the MP6 Plugin. Choose the
 <li>Follow the instructions in the icon-styles.css file to add your custom icons with two lines of css!</li>
 </ol>
 
-* Please note: You must install and activate the MP6 plugin to use.
+&hearts; Please note: You must install and activate the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a> first!
