@@ -13,12 +13,11 @@
 	font-style: normal;
 }
 
-/* Insert your specific icons here. You can select an icon and get the character from FontAwesomes cheatsheet here: http://fortawesome.github.io/Font-Awesome/cheatsheet/
-*/
+/* Select an icon from Font Awesome's cheatsheet: http://fortawesome.github.io/Font-Awesome/cheatsheet/ */
 
-.icon16.icon-posts-ads:before, /* Replace '.icon-posts-ads' with .icon-posts-<<your post type name>> */
-#adminmenu #menu-posts-ads div.wp-menu-image:before { /* Replace '#menu-posts-ads' with '#menu-posts-<<your post type name>> */
+.icon16.icon-posts-/*enter-your-post-type-here*/:before,
+#adminmenu #menu-posts-/*enter-your-post-type-here*/ div.wp-menu-image:before {
 	font-family: FontAwesome !important;
-	content: '\f0a1'; /* Replace '\f0a1' with your selected character from the cheatsheet */
+	content: '\f0a1'; /* Replace '\f0a1' with your selected character from the cheatsheet above */
 }
 
