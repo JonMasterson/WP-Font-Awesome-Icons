@@ -15,10 +15,6 @@
 
 /* Select an icon from Font Awesome's cheatsheet: http://fortawesome.github.io/Font-Awesome/cheatsheet/ */
 
-.wp-menu-image img { /* Remove images other plugins might have included for their CPTs */
-	display: none;
-}
-
 .icon16.icon-posts-/*enter-your-post-type-here*/:before,
 #adminmenu #menu-posts-/*enter-your-post-type-here*/ div.wp-menu-image:before {
 	font-family: FontAwesome !important;
