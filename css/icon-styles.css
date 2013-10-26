@@ -13,6 +13,11 @@
 	font-style: normal;
 }
 
+/* Remove menu images that MP6 might miss */
+.wp-menu-image img {
+        display: none;
+}
+
 /* Select an icon from Font Awesome's cheatsheet: http://fortawesome.github.io/Font-Awesome/cheatsheet/ */
 #adminmenu #menu-posts-/*enter-your-post-type-here*/ .wp-menu-image:before {
 	font-family: FontAwesome !important;
@@ -54,4 +59,10 @@
 #adminmenu #toplevel_page_Wordfence div.wp-menu-image:before {
 	font-family: FontAwesome !important;
 	content: '\f132';
+}
+
+/* YOAST SEO */
+#adminmenu #toplevel_page_wpseo_dashboard div.wp-menu-image:before {
+	font-family: FontAwesome !important;
+	content: '\f085';
 }
