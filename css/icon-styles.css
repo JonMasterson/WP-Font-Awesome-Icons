@@ -14,9 +14,7 @@
 }
 
 /* Select an icon from Font Awesome's cheatsheet: http://fortawesome.github.io/Font-Awesome/cheatsheet/ */
-
-.icon16.icon-posts-/*enter-your-post-type-here*/:before,
-#adminmenu #menu-posts-/*enter-your-post-type-here*/ div.wp-menu-image:before {
+#adminmenu #menu-posts-/*enter-your-post-type-here*/ .wp-menu-image:before {
 	font-family: FontAwesome !important;
 	content: '\f0a1'; /* Replace '\f0a1' with your selected character from the cheatsheet above */
 }
@@ -25,40 +23,34 @@
 /* The following styles are plugin-specific, and are provided as a resource */
 
 /* THE EVENTS CALENDAR */
-.icon16.icon-posts-tribe_events:before,
 #adminmenu #menu-posts-tribe_events div.wp-menu-image:before { 
 	font-family: FontAwesome !important;
 	content: '\f073';
 }
 
 /* GRAVITY FORMS */
-.icon16.icon-posts-gf_edit_forms:before, 
 #adminmenu #toplevel_page_gf_edit_forms div.wp-menu-image:before {
 	font-family: FontAwesome !important;
 	content: '\f022';
 }
 
 /* SUCURI */
-.icon16.icon-posts-sucurisec:before, 
 #adminmenu #toplevel_page_sucurisec div.wp-menu-image:before {
 	font-family: FontAwesome !important;
 	content: '\f023';
 }
 
 /* WOO COMMERCE */
-.icon16.icon-posts-shop_order:before,
 #adminmenu #toplevel_page_woocommerce div.wp-menu-image:before {
 	font-family: FontAwesome !important;
 	content: '\f07a';
 }
-.icon16.icon-posts-product:before,
 #adminmenu #menu-posts-product div.wp-menu-image:before {
 	font-family: FontAwesome !important;
 	content: '\f02c';
 }
 
 /* WORDFENCE */
-.icon16.icon-posts-Wordfence:before, 
 #adminmenu #toplevel_page_Wordfence div.wp-menu-image:before {
 	font-family: FontAwesome !important;
 	content: '\f132';
