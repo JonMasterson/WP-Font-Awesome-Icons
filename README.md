@@ -1,4 +1,4 @@
-Font-Awesome-for-MP6
+Font Awesome for MP6
 ====================
 
 Activate this package as a plugin to quickly swap out icons in your admin menu while using the MP6 plugin. Utilize the vast selection on <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank">Font Awesome's cheatsheet</a>. Easily locate icons for any plugin or custom post type.
