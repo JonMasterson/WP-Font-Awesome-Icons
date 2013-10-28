@@ -1,7 +1,7 @@
 Font Awesome for MP6
 ====================
 
-Activate this package as a plugin to quickly swap out icons in your admin menu while using the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a>. Utilize the vast selection on <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank">Font Awesome's cheatsheet</a>. Easily locate icons for any plugin, custom post type, or any admin menu item.
+Activate this package as a plugin to quickly swap out icons in your admin menu while using the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a>. Utilize the vast selection on <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank">Font Awesome's cheatsheet</a>. Easily locate icons for any plugin, custom post type, or  admin menu item.
 
 Adding your chosen Font Awesome icon to the admin menu of your theme is as easy as 1, 2, 3:
 
