@@ -90,9 +90,18 @@ function build_icon_settings( $args ) {
  * Validate the input.
  */
 function validate_icon_settings( $input ) {
-  foreach( $input as $k => $v ) {
-	$input = str_replace( '&#x', '', $v ); // remove extra unicode gunk
-	$newinput[$k] = sanitize_text_field( $input ); // no html!
-  }
-  return $newinput;
+	foreach( $input as $k => $v ) {
+		// find possible copy/paste mistakes
+		$remove = array( '&#x', ';', '#x' ); // extra unicode junk
+		$input = str_replace( $remove, '', $v ); // remove unicode junk
+		$firstletter = substr( $input, 0, 1 ); // get the 1st letter
+		if ( $firstletter == 'x' ) $input = substr( $input, 1 ); // remove if 1st letter "x"
+		// seek and destroy
+		if ( !preg_match('/^[f]{1}+[0-9]{1}+[A-z0-9]{2}$/', $input ) ) { // match FA unicode
+			$newinput[$k] = ''; // Unicode Nazi says "No save for you!"
+		} else {
+			$newinput[$k] = sanitize_text_field( $input ); // Unicode Nazi lets you save, but glares at you.
+		}
+	}
+	return $newinput;
 }
