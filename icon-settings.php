@@ -39,20 +39,22 @@ function register_icon_settings() {
     register_setting( 'icon_settings', 'icon_settings', 'validate_icon_settings' );
     add_settings_section( 'admin_menu_section', 'Admin Menu Icons', 'build_admin_menu_section', 'icon-settings.php' );
 	global $menu;
-	foreach ( $menu as $m ) {
-		if ( isset( $m[5] ) ) {
-			if ( isset( $m[0] ) && $m[0] != '' ) {
-				$title = preg_replace( '/\d/', '', $m[0] ); // removes the count from some menu titles
-				$field_args = array(
-      				'type'      => 'unicode',
-					'id'        => $m[5].'_icon',
-					'name'      => $m[5].'_icon',
-					'desc'      => 'Enter the unicode of the Font Awesome icon.',
-					'std'       => '',
-					'label_for' => $title,
-					'class'     => ''
-				);
-				add_settings_field( $m[5], $title, 'build_icon_settings', 'icon-settings.php', 'admin_menu_section', $field_args );
+	if ( $menu ) {
+		foreach ( $menu as $m ) {
+			if ( isset( $m[5] ) ) {
+				if ( isset( $m[0] ) && $m[0] != '' ) {
+					$title = preg_replace( '/\d/', '', $m[0] ); // removes the count from some menu titles
+					$field_args = array(
+	      				'type'      => 'unicode',
+						'id'        => $m[5].'_icon',
+						'name'      => $m[5].'_icon',
+						'desc'      => 'Enter the unicode of the Font Awesome icon.',
+						'std'       => '',
+						'label_for' => $title,
+						'class'     => ''
+					);
+					add_settings_field( $m[5], $title, 'build_icon_settings', 'icon-settings.php', 'admin_menu_section', $field_args );
+				}
 			}
 		}
 	}
