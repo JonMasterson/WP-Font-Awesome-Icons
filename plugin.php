@@ -82,10 +82,10 @@ foreach ( $menu as $m ) {
 	font-family: FontAwesome !important;
 	content: <?php echo "'\\".esc_attr( $fa_icon )."';"; ?> 
 }
-}
 <?php 
 		}
 	}
+}
 }
 ?>
 </style>
