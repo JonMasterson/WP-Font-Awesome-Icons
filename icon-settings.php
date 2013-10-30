@@ -68,6 +68,7 @@ function build_admin_menu_section( $section ) {
 <p>
 Replace icons in your admin menu &mdash; visit <a href="http://fontawesome.io/cheatsheet/" target="_blank">Font Awesome's cheatsheet</a>, choose an icon, and then copy/paste the icon's unicode (e.g. "f000") into the fields below. Save your settings and the icons will change like magic!
 </p>
+<p>Thank you, <a href="https://twitter.com/davegandy" target="_blank">Dave Gandy</a>, for creating and maintaining <a href="http://fontawesome.io/" target="_blank">Font Awesome</a>.</p>
 <?php
 }
 
