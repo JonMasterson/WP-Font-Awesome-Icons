@@ -72,6 +72,7 @@ class FontAwesome {
 <!-- Styles for Font Awesome Icons -->
 <style type="text/css">
 <?php
+if ( $menu ) {
 foreach ( $menu as $m ) {
 	if ( isset( $m[5] ) ) {
 		$fa_icon = $icon_options[$m[5].'_icon'];
@@ -80,6 +81,7 @@ foreach ( $menu as $m ) {
 #adminmenu #<?php esc_attr_e( $m[5] ); ?> div.wp-menu-image:before { 
 	font-family: FontAwesome !important;
 	content: <?php echo "'\\".esc_attr( $fa_icon )."';"; ?> 
+}
 }
 <?php 
 		}
