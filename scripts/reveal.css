@@ -1,0 +1,14 @@
+.reveal-modal-bg{position:fixed;height:100%;width:100%;background:#000;background:rgba(0,0,0,0.45);z-index:98;display:none;top:0;left:0}
+.reveal-modal{visibility:hidden;position:absolute;left:50%;z-index:99;height:auto;margin-left:-45%;width:80%;background-color:#fff;padding:1.25em;border:solid 1px #666;-webkit-box-shadow:0 0 10px rgba(0,0,0,0.4);box-shadow:0 0 10px rgba(0,0,0,0.4);overflow-y:auto;max-height:90%;top:5%;bottom:5%;}
+.reveal-modal .close-butz {font-size:22px;line-height:.5;position:absolute;top:8px;right:11px;cursor:pointer;}
+.reveal-modal .close-reveal-modal {cursor:pointer;}
+#iconz {display:inline-block;font-size:14px;line-height:1.5em;width:100%;padding:10px 0 0;}
+#iconz a {text-decoration:none;}
+#letterz {display:block;width:100%;text-transform:uppercase;padding:20px 0 5px;margin-bottom:10px;border-bottom:1px solid #ddd;}
+.killIcns {color:#666;}
+.saveMssg {font-size:small;color:#C00;}
+@media only screen and (min-width: 500px) {#iconz {line-height:1.5em;width:46%;padding:10px 2% 0;}}
+@media only screen and (min-width: 820px) {#iconz {font-size:12px;line-height:1.5em;width:30%;padding:10px 1% 0 0;}}
+@media only screen and (min-width: 1300px) {#iconz {line-height:1;width:21%;padding:10px 2% 0;}}
+@media only screen and (min-width: 1350px) {#iconz {width:16%;padding:10px 2% 0;}}
+@media only screen and (min-width: 1900px) {#iconz {width:11%;padding:10px 2% 0;}}
