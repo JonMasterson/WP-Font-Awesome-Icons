@@ -3,7 +3,7 @@
 Plugin Name: Font Awesome Icons for Admin
 Plugin URI: http://www.jonmasterson.com
 Description: Replace any menu icons with the Font Awesome icon set in the WordPress Admin.
-Version: 0.1
+Version: 0.2
 Author: Jon Masterson
 Author URI: http://jonmasterson.com
 Author Email: hello@jonmasterson.com
@@ -54,7 +54,7 @@ class FontAwesome {
 
     public function init() {
 		if ( get_bloginfo( 'version' ) >= '3.8' || 'mp6' === get_user_option( 'admin_color' ) ) { // only works for WordPress version >= 3.8
-        		add_action('admin_enqueue_scripts', array( &$this, 'register_plugin_styles' ) );
+			add_action( 'admin_enqueue_scripts', array( &$this, 'register_plugin_styles' ) );
 			add_action( 'admin_head', array( &$this, 'set_admin_icons' ) );
 			require_once( dirname( __FILE__ ) . '/icon-settings.php' );
 		} else {
@@ -66,10 +66,10 @@ class FontAwesome {
 		wp_register_style( 'font-awesome-icons', plugins_url( 'font-awesome/css/font-awesome.min.css', __FILE__ ), false, '4.0.3' );
    		wp_enqueue_style( 'font-awesome-icons' );
     }
-    
-    public function unsupportedError() { // Error displays if WordPress version is > 3.8
+	
+	public function unsupportedError() { // Error displays if WordPress version is > 3.8
 		echo '<div class="error"><p>' . sprintf( __( 'Sorry, Font Awesome for Admin requires WordPress %s or higher. Please upgrade your WordPress install.' ), '3.8' ) . '</p></div>';
-    }
+	}
 	
 	public function set_admin_icons() { 
 		global $menu; 
@@ -77,8 +77,10 @@ class FontAwesome {
         
 <!-- Styles for Font Awesome Icons -->
 <style type="text/css">
+.wp-menu-image img {
+        display: none;
+}
 <?php
-if ( $menu ) {
 foreach ( $menu as $m ) {
 	if ( isset( $m[5] ) ) {
 		$fa_icon = $icon_options[$m[5].'_icon'];
@@ -92,12 +94,9 @@ foreach ( $menu as $m ) {
 		}
 	}
 }
-}
 ?>
 </style>
-<?php
-}
-
+<?php }
 }
 
 FontAwesome::setup();
