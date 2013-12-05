@@ -1,4 +1,4 @@
-Font Awesome Icons for Admin
+WP Font Awesome Admin Icons
 ====================
 
 Upload and activate this plugin in your local <a href="http://wordpress.org" target="_blank">WordPress</a> install to quickly swap out icons in your admin menu (while using the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a>). Easily locate icons for any plugin, custom post type, or admin menu item.
