@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Font Awesome Icons for Admin
+Plugin Name: WP Font Awesome Admin Icons
 Plugin URI: http://www.jonmasterson.com
 Description: Replace any menu icons with the Font Awesome icon set in the WordPress Admin.
 Version: 0.2
