@@ -1,22 +1,22 @@
-Font Awesome for MP6
+Font Awesome for Admin
 ====================
 
-Upload and activate this plugin in your local <a href="http://wordpress.org" target="_blank">WordPress</a> install to quickly swap out icons in your admin menu (while using the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a>). Utilize the vast selection on <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank">Font Awesome's cheat sheet</a>. Easily locate icons for any plugin, custom post type, or admin menu item.
+Upload and activate this plugin in your local <a href="http://wordpress.org" target="_blank">WordPress</a> install to quickly swap out icons in your admin menu (while using the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a>). Easily locate icons for any plugin, custom post type, or admin menu item.
 
 Adding your chosen Font Awesome icon to the admin menu of your theme is as easy as 1, 2, 3... 
 
 <ol>
-<li>Copy the icon's unicode from the Font Awesome cheat sheet</li>
-<li>Paste the unicode into the field on the provided Settings->Icons page</li>
+<li>Click “Select Icon” for the menu icon you want to replace</li>
+<li>Choose a Font Awesome Icon</li>
 <li>Save your settings</li>
 </ol>
 
 Contributors
 ====================
 
-Thanks to <a href="https://github.com/davegandy" target="_blank">@davegandy</a> for creating the wonderful and amazing <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a> and the amazing team behind the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a>.
+Thanks to <a href="https://github.com/davegandy" target="_blank">@davegandy</a> for creating the wonderful and amazing <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a>.
 
 Troubleshooting
 ====================
 
-Having trouble with this plugin? Please make sure you've installed <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6</a>, or this plugin will not work.
+Having trouble with this plugin? If you are using WordPress versions 3.7 or below, please make sure you've installed the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a> first, or this plugin will not work.
