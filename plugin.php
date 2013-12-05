@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Font Awesome for MP6
+Plugin Name: Font Awesome Icons for Admin
 Plugin URI: http://www.jonmasterson.com
-Description: Use the Font Awesome icon set in WordPress Admin in conjunction with the MP6 plugin.
+Description: Replace any menu icons with the Font Awesome icon set in the WordPress Admin.
 Version: 0.1
 Author: Jon Masterson
 Author URI: http://jonmasterson.com
@@ -53,16 +53,22 @@ class FontAwesome {
     }
 
     public function init() {
-		if ( 'mp6' === get_user_option( 'admin_color' ) ) { // check for MP6
-        	add_action('admin_enqueue_scripts', array( &$this, 'register_plugin_styles' ) );
+		if ( get_bloginfo( 'version' ) >= '3.8' || 'mp6' === get_user_option( 'admin_color' ) ) { // only works for WordPress version >= 3.8
+        		add_action('admin_enqueue_scripts', array( &$this, 'register_plugin_styles' ) );
 			add_action( 'admin_head', array( &$this, 'set_admin_icons' ) );
 			require_once( dirname( __FILE__ ) . '/icon-settings.php' );
+		} else {
+			add_action( 'admin_head', array( &$this,'unsupportedError' ) ); // WordPress version unsupported
 		}
     }
 
     public function register_plugin_styles() {
-		wp_register_style( 'font-awesome-icons', plugins_url( 'fa.css', __FILE__ ), false, '4.0.1' );
+		wp_register_style( 'font-awesome-icons', plugins_url( 'font-awesome/css/font-awesome.min.css', __FILE__ ), false, '4.0.3' );
    		wp_enqueue_style( 'font-awesome-icons' );
+    }
+    
+    public function unsupportedError() { // Error displays if WordPress version is > 3.8
+		echo '<div class="error"><p>' . sprintf( __( 'Sorry, Font Awesome for Admin requires WordPress %s or higher. Please upgrade your WordPress install.' ), '3.8' ) . '</p></div>';
     }
 	
 	public function set_admin_icons() { 
