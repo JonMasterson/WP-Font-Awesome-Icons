@@ -77,8 +77,11 @@ class FontAwesome {
         
 <!-- Styles for Font Awesome Icons -->
 <style type="text/css">
-.wp-menu-image img {
-        display: none;
+#adminmenu .wp-menu-image img {
+	display: none;
+}
+#adminmenu .wp-menu-image {
+	background: url('') no-repeat -500px -500px !important;
 }
 <?php
 foreach ( $menu as $m ) {
