@@ -86,10 +86,12 @@ class FontAwesome {
 <?php
 foreach ( $menu as $m ) {
 	if ( isset( $m[5] ) ) {
-		$fa_icon = $icon_options[$m[5].'_icon'];
+		$crap = array( "?", "=" );
+		$the_id = str_replace( $crap, "-", $m[5] );
+		$fa_icon = $icon_options[$the_id.'_icon'];
 		if ( isset( $fa_icon ) && $fa_icon != '' ) { 
 ?>
-#adminmenu #<?php esc_attr_e( $m[5] ); ?> div.wp-menu-image:before { 
+#adminmenu #<?php esc_attr_e( $the_id ); ?> div.wp-menu-image:before { 
 	font-family: FontAwesome !important;
 	content: <?php echo "'\\".esc_attr( $fa_icon )."';"; ?> 
 }
