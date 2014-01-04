@@ -60,18 +60,20 @@ function register_icon_settings() {
 	if ( $menu ) {
 		foreach ( $menu as $m ) {
 			if ( isset( $m[5] ) ) {
+				$crap = array( "?", "=" );
+				$the_id = str_replace( $crap, "-", $m[5] );
 				if ( isset( $m[0] ) && $m[0] != '' ) {
 					$title = preg_replace( '/\d/', '', $m[0] ); // removes the count from some menu titles
 					$field_args = array(
 						'type'      =>  'links',
-						'id'        =>  $m[5].'_icon',
-						'name'      =>  $m[5].'_icon',
+						'id'        =>  $the_id.'_icon',
+						'name'      =>  $the_id.'_icon',
 						'desc'      =>  '',
 						'std'       =>  '',
 						'label_for' =>  $title,
 						'class'     =>  'linker'
 					);
-					add_settings_field( $m[5], $title, 'build_icon_settings', 'icon-settings.php', 'admin_menu_section', $field_args );
+					add_settings_field( $the_id, $title, 'build_icon_settings', 'icon-settings.php', 'admin_menu_section', $field_args );
 				}
 			}
 		}
