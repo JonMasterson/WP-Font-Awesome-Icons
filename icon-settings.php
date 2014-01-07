@@ -60,7 +60,7 @@ function register_icon_settings() {
 	if ( $menu ) {
 		foreach ( $menu as $m ) {
 			if ( isset( $m[5] ) ) {
-				$crap = array( "?", "=" );
+				$crap = array( "?", "=", "/" );
 				$the_id = str_replace( $crap, "-", $m[5] );
 				if ( isset( $m[0] ) && $m[0] != '' ) {
 					$title = preg_replace( '/\d/', '', $m[0] ); // removes the count from some menu titles
