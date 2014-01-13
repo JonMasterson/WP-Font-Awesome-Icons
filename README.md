@@ -43,8 +43,6 @@ Adding Icons to Posts &amp; Pages
 
 You can use a shortcode in your posts, pages and even widgets to display a Font Awesome icon.
 
-`[icon name=name-of-icon]` is the shortcode format, where "name-of-icon" is class of the icon you would like to use.
-
 **Examples**
 
 Pencil icon
