@@ -43,7 +43,7 @@ Adding Icons to Posts &amp; Pages
 
 You can use a shortcode in your posts, pages and even widgets to display a Font Awesome icon.
 
-**Examples**
+### Examples
 
 Pencil icon
 
@@ -57,7 +57,7 @@ Chevron left icon
 
 `[icon name=icon-chevron-left]`
 
-__TinyMCE Plugin__
+### TinyMCE Plugin
 
 You can also select the icon you would like to add to your post or page content from the Icons dropdown menu in the Visual Editor.
 
