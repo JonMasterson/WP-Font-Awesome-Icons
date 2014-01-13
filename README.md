@@ -1,7 +1,7 @@
 WP Font Awesome Admin Icons
 ====================
 
-This plugin will allow you to quickly and easily fire up Font Awesome icons within your local <a href="http://wordpress.org" target="_blank">WordPress</a> install. Upload and activate this plugin and you will be able to all of the following without touching a single line of code:
+This plugin will allow you to quickly and easily fire up Font Awesome icons within your local <a href="http://wordpress.org" target="_blank">WordPress</a> install. Upload and activate this plugin and you will be able to accomplish all of the following without touching a single line of code:
 
 <ol>
 <li>Swap out any icon in your WordPress admin menu (compatible with WordPress version 3.8+ or WordPress version 3.7 with the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a>).</li>
