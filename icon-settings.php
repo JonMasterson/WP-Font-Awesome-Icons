@@ -850,6 +850,7 @@ function menu_icons_size_callback( $args ) {
 	$html .= '<option value="fa-4x"' . selected( $options[$id], 'fa-4x', false ) . '>' . __( '4x', $theme_name ) . '</option>';	
 	$html .= '<option value="fa-5x"' . selected( $options[$id], 'fa-5x', false ) . '>' . __( '5x', $theme_name ) . '</option>';	
 	$html .= '</select>';
+	$html .= '<br /><br /><hr />';
 	echo $html;
 }
 
