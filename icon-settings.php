@@ -823,7 +823,7 @@ function menu_icons_callback( $args ) {
 	$options[$id] = stripslashes( $options[$id] );
 	$options[$id] = esc_attr( $options[$id] );
 	if ( isset( $options[$id] ) && $options[$id] != '' ) {
-		$showicon =  "fa-" . $options[$id];
+		$showicon =  $options[$id];
 		$removeicon = '<span class="' . esc_attr( $id ) . '-killIcns"><a href="#" title="Remove Icon" class="killIcns" data-kill-id="' . esc_attr( $id ) . '">' . __( 'Remove Icon', $theme_name ) . '</a>' . __( '&nbsp; ', $theme_name ) . '</span>';
 	} else {
 		$showicon = "";
@@ -832,7 +832,7 @@ function menu_icons_callback( $args ) {
 	echo '<span class="add-inputfield"></span>';
 	echo '<span class="add-inputfield-2"></span>';
 	echo '<input class="' . esc_attr( $class ) . '" type="hidden" id="' . esc_attr( $id ) . '" name="' . esc_attr( $option_name ) . '[' . esc_attr( $id ) . ']" value="' . $options[$id] . '" />';
-	echo '<span class="' . esc_attr( $id ) . '-icon"><i class="fa ' . __( $showicon, $theme_name ) . '"></i></span>&nbsp;<a href="#" data-reveal-id="myModal" data-hidden-id="' . esc_attr( $id ) . '">' . __( 'Select Icon', $theme_name ) . '</a>' . __( '&nbsp; ' . $removeicon, $theme_name ) . '<span class="' . esc_attr( $id ) . '-ajaxRemove"></span><span class="' . esc_attr( $id ) . '-saveMssg saveMssg"></span><br /><span class="description">' . esc_attr( $desc ) . '</span>';
+	echo '<span class="' . esc_attr( $id ) . '-icon"><i class="fa fa-' . $showicon . '"></i></span>&nbsp;<a href="#" data-reveal-id="myModal" data-hidden-id="' . esc_attr( $id ) . '">' . __( 'Select Icon', $theme_name ) . '</a>' . __( '&nbsp; ' . $removeicon, $theme_name ) . '<span class="' . esc_attr( $id ) . '-ajaxRemove"></span><span class="' . esc_attr( $id ) . '-saveMssg saveMssg"></span><br /><span class="description">' . esc_attr( $desc ) . '</span>';
 }
 
 function menu_icons_size_callback( $args ) {
