@@ -40,7 +40,7 @@ Add icons to each of your registered WordPress menu items. You have the choice o
 Contributors
 ====================
 
-Thanks to <a href="https://github.com/davegandy" target="_blank">@davegandy</a> for creating the wonderful and amazing <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a>.
+Thanks to <a href="https://github.com/davegandy" target="_blank">@davegandy</a> for creating the wonderful and amazing <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a>, and to <a href="http://rachelbaker.me" target="_blank">Rachel Baker</a> for creating <a href="http://wordpress.org/plugins/font-awesome/" target="_blank">Font Awesome for WordPress</a>, and the TinyMCE portion of this plugin.
 
 Troubleshooting
 ====================
