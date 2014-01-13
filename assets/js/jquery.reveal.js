@@ -41,6 +41,7 @@ $('<input type="hidden" id="hiddenzone" />').appendTo('.add-inputfield-2');
 		$('#'+killInput).val('');
 		$('.'+killInput+'-saveMssg').html('Not saved yet.');
 		$('.'+killInput+'-icn').html('<i class="fa fa-fw"></i>');
+		$('.'+killInput+'-icon').html('<i class="fa"></i>');
 		$('.'+killInput+'-killIcns').remove();
 		$('.'+killInput+'-ajaxRemove').empty();
 	});
@@ -58,6 +59,7 @@ $('<input type="hidden" id="hiddenzone" />').appendTo('.add-inputfield-2');
 		$('.'+addInput+'-ajaxRemove').html('<a href="" title="Remove Icon" class="killIcns" data-kill-id="'+addInput+'">Remove Icon</a>&nbsp; ');
 		$('.'+addInput+'-killIcns').remove();
 		$('.'+addInput+'-icn').html('<i class="fa fa-fw">&#x'+iconId+'</i>');
+		$('.'+addInput+'-icon').html('<i class="fa fa-'+iconId+'"></i>');
 		$('.'+addInput+'-saveMssg').html('Not saved yet.');
 	});
 
@@ -66,7 +68,6 @@ $('<input type="hidden" id="hiddenzone" />').appendTo('.add-inputfield-2');
 ----------------------------*/
 
     $.fn.reveal = function(options) {
-        
         
         var defaults = {  
 	    	animation: 'fadeAndPop', //fade, fadeAndPop, none
