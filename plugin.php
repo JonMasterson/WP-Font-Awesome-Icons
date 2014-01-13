@@ -54,13 +54,8 @@ class WPFontAwesomeIcons {
 
     public function init_WPFAI() {
 		add_action( 'admin_enqueue_scripts', array( &$this, 'register_plugin_styles' ) );
-		
-		if ( get_bloginfo( 'version' ) >= '3.8' || 'mp6' === get_user_option( 'admin_color' ) ) { // only works for WordPress version >= 3.8
-			add_action( 'admin_head', array( &$this, 'set_admin_icons' ) );
-			require_once( dirname( __FILE__ ) . '/icon-settings.php' );
-		} else {
-			add_action( 'admin_head', array( &$this,'unsupportedError' ) ); // WordPress version unsupported
-		}
+		add_action( 'admin_head', array( &$this, 'set_admin_icons' ) );
+		require_once( dirname( __FILE__ ) . '/icon-settings.php' );
 		
 		$options = get_option( 'general_icon_settings' );
 		if ( !isset( $options['frontend_icons'] ) || $options['frontend_icons'] == 0 ) {
@@ -85,10 +80,6 @@ class WPFontAwesomeIcons {
         	wp_enqueue_style( 'icon-styles', plugins_url( 'assets/css/font-awesome.min.css', __FILE__ ), false, '4.0.3' );
 		}
     }
-	
-	public function unsupportedError() { // Error displays if WordPress version is > 3.8
-		echo '<div class="error"><p>' . sprintf( __( 'Adding Font Awesome icons to your admin menu requires WordPress %s or higher. Please upgrade your WordPress install to use this feature.' ), '3.8' ) . '</p></div>';
-	}
 	
 	public function set_admin_icons() { 
 		global $menu; 
