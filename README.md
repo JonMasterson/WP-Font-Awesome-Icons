@@ -10,12 +10,12 @@ This plugin will allow you to quickly and easily fire up Font Awesome icons with
 </ol>
 
 Icon Settings Page
-==================== 
+------ 
 
 All of this plugin's features can be managed from the "Icons" settings subpage, under the "Appearance" menu. This page has three tabs: General, Admin Menu, and Nav Menu. The "General" tab contains basic options for managing where you enqueue icon styles (CDN or local), and for removing icon styles from the front end (if you only plan to use this plugin to manage your admin menu icons).
 
 Admin Menus
-==================== 
+------
 
 Replacing your admin menu options is as easy as 1, 2, 3! From the "Admin Menu" tab:
 
@@ -26,7 +26,7 @@ Replacing your admin menu options is as easy as 1, 2, 3! From the "Admin Menu" t
 </ol>
 
 Navigation Menus
-==================== 
+------
 
 Add icons to each of your registered WordPress menu items. You have the choice of adding an icon before or after the menu item text. You can even go crazy and add icons before AND after your menu text. Font Awesome size options are also included:
 
@@ -39,7 +39,7 @@ Add icons to each of your registered WordPress menu items. You have the choice o
 
 
 Adding Icons to Posts &amp; Pages
-==================== 
+------
 
 You can use a shortcode in your posts, pages and even widgets to display a Font Awesome icon.
 
@@ -61,13 +61,12 @@ __TinyMCE Plugin__
 
 You can also select the icon you would like to add to your post or page content from the Icons dropdown menu in the Visual Editor.
 
-
 Contributors
-====================
+------
 
 Thanks to <a href="https://github.com/davegandy" target="_blank">@davegandy</a> for creating the wonderful and amazing <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a>, and to <a href="http://rachelbaker.me" target="_blank">Rachel Baker</a> for creating <a href="http://wordpress.org/plugins/font-awesome/" target="_blank">Font Awesome for WordPress</a>, and the TinyMCE portion of this plugin.
 
 Troubleshooting
-====================
+------
 
 Having trouble with this plugin? If you are using WordPress version 3.7, please make sure you've installed the <a href="http://wordpress.org/plugins/mp6/" target="_blank">MP6 plugin</a> first, or the admin menu options will look a bit strange.
