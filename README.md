@@ -63,8 +63,6 @@ __TinyMCE Plugin__
 
 You can also select the icon you would like to add to your post or page content from the Icons dropdown menu in the Visual Editor.
 
-![image](http://f.cl.ly/items/212e2P0m3g39292p271y/Font-Awesome-TinyMCE-plugin.jpg) 
-
 
 Contributors
 ====================
