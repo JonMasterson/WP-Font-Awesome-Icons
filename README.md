@@ -37,6 +37,35 @@ Add icons to each of your registered WordPress menu items. You have the choice o
 <li>Save your settings</li>
 </ol>
 
+
+Adding Icons to Posts &amp; Pages
+==================== 
+
+You can use a shortcode in your posts, pages and even widgets to display a Font Awesome icon.
+
+`[icon name=name-of-icon]` is the shortcode format, where "name-of-icon" is class of the icon you would like to use.
+
+**Examples**
+
+Pencil icon
+
+`[icon name=icon-pencil]`
+
+Phone icon
+
+`[icon name=icon-phone]`
+
+Chevron left icon
+
+`[icon name=icon-chevron-left]`
+
+__TinyMCE Plugin__
+
+You can also select the icon you would like to add to your post or page content from the Icons dropdown menu in the Visual Editor.
+
+![image](http://f.cl.ly/items/212e2P0m3g39292p271y/Font-Awesome-TinyMCE-plugin.jpg) 
+
+
 Contributors
 ====================
 
