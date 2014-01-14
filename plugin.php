@@ -172,42 +172,33 @@ foreach ( $menu as $m ) {
 			$icn_keys = array_keys( $icon_classes );
 			$clazzez = explode( ' ', $classes );
 			foreach ( $clazzez as $key => $val ) {
-				if ( in_array( 'icn-' . $val, $icn_keys ) || in_array( 'icn-after-' . $val, $icn_keys ) || in_array( 'size-icn-after-' . $val, $icn_keys ) || in_array( 'size-icn-' . $val, $icn_keys ) ) {
+				if ( in_array( 'icn-' . $val, $icn_keys ) || in_array( 'icn-after-' . $val, $icn_keys ) ) {
 					if ( $icon_classes[ 'icn-' . $val ] != '' && $icon_classes[ 'icn-after-' . $val ] == '' ) {
 						if ( $icon_classes[ 'size-icn-' . $val ] != '' ) {
-							$icn_before[] = $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ];
+							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text;
 						} else {
-							$icn_before[] = $icon_classes[ 'icn-' . $val ];
+							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text;
 						}
 					} elseif ( $icon_classes[ 'icn-' . $val ] == '' && $icon_classes[ 'icn-after-' . $val ] != '' ) {
 						if ( $icon_classes[ 'size-icn-after-' . $val ] != '' ) {
-							$icn_after[] = $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ];
+							$newtext = $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ] .'"></i>';
 						} else {
-							$icn_after[] = $icon_classes[ 'icn-after-' . $val ];
+							$newtext = $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] .'"></i>';
 						}
 					} elseif ( $icon_classes[ 'icn-' . $val ] != '' && $icon_classes[ 'icn-after-' . $val ] != '' ) {
-						if ( $icon_classes[ 'size-icn-' . $val ] != '' ) {
-							$icn_both_before[] = $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ];
+						if ( $icon_classes[ 'size-icn-' . $val ] != '' && $icon_classes[ 'size-icn-after-' . $val ] == '' ) {
+							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] .'"></i>';
+						} elseif ( $icon_classes[ 'size-icn-' . $val ] == '' && $icon_classes[ 'size-icn-after-' . $val ] != '' ) {
+							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ] .'"></i>';
+						} elseif ( $icon_classes[ 'size-icn-' . $val ] != '' && $icon_classes[ 'size-icn-after-' . $val ] != '' ) {
+							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ] .'"></i>';
 						} else {
-							$icn_both_before[] = $icon_classes[ 'icn-' . $val ];
-						}
-						if ( $icon_classes[ 'size-icn-after-' . $val ] != '' ) {
-							$icn_both_after[] = $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ];
-						} else {
-							$icn_both_after[] = $icon_classes[ 'icn-after-' . $val ];
+							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] .'"></i>';
 						}
 					}
+				} else {
+					$newtext = $text;
 				}
-			}
-			
-			if ( !empty( $icn_before ) && empty( $icn_after ) && empty( $icn_both_before ) ) {
-				$newtext = '<i class="fa fa-' . implode( ' ', $icn_before ) . '"></i>&nbsp;&nbsp;' . $text;
-			} elseif ( empty( $icn_before ) && !empty( $icn_after ) && empty( $icn_both_before ) ) {
-				$newtext = $text . '&nbsp;&nbsp;<i class="fa fa-'. implode( ' ', $icn_after ) .'"></i>';
-			} elseif ( empty( $icn_before ) && empty( $icn_after ) && !empty( $icn_both_before ) ) {
-				$newtext = '<i class="fa fa-' . implode( ' ', $icn_both_before ) . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. implode( ' ', $icn_both_after ) .'"></i>';
-			} else {
-				$newtext = $text;
 			}
 			
 			$item = $start.$classes.$rest.$newtext.'</a>';
