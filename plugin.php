@@ -174,24 +174,22 @@ foreach ( $menu as $m ) {
 			foreach ( $clazzez as $key => $val ) {
 				if ( in_array( 'icn-' . $val, $icn_keys ) || in_array( 'icn-after-' . $val, $icn_keys ) ) {
 					
-					if ( $icon_classes[ 'icn-' . $val ] != '' || $icon_classes[ 'icn-after-' . $val ] != '' ) {
-						if ( $icon_classes[ 'size-icn-' . $val ] != '' ) {
-							$before_icn = $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ];
-						} else {
-							$before_icn = $icon_classes[ 'icn-' . $val ];
-						}
-						if ( $icon_classes[ 'size-icn-after-' . $val ] != '' ) {
-							$after_icn = $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ];
-						} else {
-							$after_icn = $icon_classes[ 'icn-after-' . $val ];
-						}
+					$before = $icon_classes[ 'icn-' . $val ];
+					$after = $icon_classes[ 'icn-after-' . $val ];
+					$size_bfr = $icon_classes[ 'size-icn-' . $val];
+					$size_aft = $icon_classes[ 'size-icn-after-' . $val];
+					
+					if ( $before != '' || $after != '' ) {
+						$before_icn = ( $size_bfr != '' ) ? $before . ' ' . $size_bfr : $before ;
+						$after_icn = ( $size_aft != '' ) ? $after . ' ' . $size_aft : $after ;
+						$after_icn = $after;
 					}
 					
-					if ( $icon_classes[ 'icn-' . $val ] != '' && $icon_classes[ 'icn-after-' . $val ] == '' ) {
+					if ( $before != '' && $after == '' ) {
 							$newtext = '<i class="fa fa-' . $before_icn . '"></i>&nbsp;&nbsp;' . $text;
-					} elseif ( $icon_classes[ 'icn-' . $val ] == '' && $icon_classes[ 'icn-after-' . $val ] != '' ) {
+					} elseif ( $before == '' && $after != '' ) {
 							$newtext = $text . '&nbsp;&nbsp;<i class="fa fa-'. $after_icn .'"></i>';
-					} elseif ( $icon_classes[ 'icn-' . $val ] != '' && $icon_classes[ 'icn-after-' . $val ] != '' ) {
+					} elseif ( $before != '' && $after != '' ) {
 							$newtext = '<i class="fa fa-' . $before_icn . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $after_icn .'"></i>';
 					}
 					
