@@ -173,29 +173,28 @@ foreach ( $menu as $m ) {
 			$clazzez = explode( ' ', $classes );
 			foreach ( $clazzez as $key => $val ) {
 				if ( in_array( 'icn-' . $val, $icn_keys ) || in_array( 'icn-after-' . $val, $icn_keys ) ) {
-					if ( $icon_classes[ 'icn-' . $val ] != '' && $icon_classes[ 'icn-after-' . $val ] == '' ) {
+					
+					if ( $icon_classes[ 'icn-' . $val ] != '' || $icon_classes[ 'icn-after-' . $val ] != '' ) {
 						if ( $icon_classes[ 'size-icn-' . $val ] != '' ) {
-							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text;
+							$before_icn = $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ];
 						} else {
-							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text;
+							$before_icn = $icon_classes[ 'icn-' . $val ];
 						}
-					} elseif ( $icon_classes[ 'icn-' . $val ] == '' && $icon_classes[ 'icn-after-' . $val ] != '' ) {
 						if ( $icon_classes[ 'size-icn-after-' . $val ] != '' ) {
-							$newtext = $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ] .'"></i>';
+							$after_icn = $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ];
 						} else {
-							$newtext = $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] .'"></i>';
-						}
-					} elseif ( $icon_classes[ 'icn-' . $val ] != '' && $icon_classes[ 'icn-after-' . $val ] != '' ) {
-						if ( $icon_classes[ 'size-icn-' . $val ] != '' && $icon_classes[ 'size-icn-after-' . $val ] == '' ) {
-							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] .'"></i>';
-						} elseif ( $icon_classes[ 'size-icn-' . $val ] == '' && $icon_classes[ 'size-icn-after-' . $val ] != '' ) {
-							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ] .'"></i>';
-						} elseif ( $icon_classes[ 'size-icn-' . $val ] != '' && $icon_classes[ 'size-icn-after-' . $val ] != '' ) {
-							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . ' ' . $icon_classes[ 'size-icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] . ' ' . $icon_classes[ 'size-icn-after-' . $val ] .'"></i>';
-						} else {
-							$newtext = '<i class="fa fa-' . $icon_classes[ 'icn-' . $val ] . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $icon_classes[ 'icn-after-' . $val ] .'"></i>';
+							$after_icn = $icon_classes[ 'icn-after-' . $val ];
 						}
 					}
+					
+					if ( $icon_classes[ 'icn-' . $val ] != '' && $icon_classes[ 'icn-after-' . $val ] == '' ) {
+							$newtext = '<i class="fa fa-' . $before_icn . '"></i>&nbsp;&nbsp;' . $text;
+					} elseif ( $icon_classes[ 'icn-' . $val ] == '' && $icon_classes[ 'icn-after-' . $val ] != '' ) {
+							$newtext = $text . '&nbsp;&nbsp;<i class="fa fa-'. $after_icn .'"></i>';
+					} elseif ( $icon_classes[ 'icn-' . $val ] != '' && $icon_classes[ 'icn-after-' . $val ] != '' ) {
+							$newtext = '<i class="fa fa-' . $before_icn . '"></i>&nbsp;&nbsp;' . $text . '&nbsp;&nbsp;<i class="fa fa-'. $after_icn .'"></i>';
+					}
+					
 				} else {
 					$newtext = $text;
 				}
