@@ -575,7 +575,7 @@ function initialize_general_icon_settings() {
 	
 	add_settings_field(	
 		'cdn_fa',
-		__( 'Use Local Icon Styles', 'sandbox' ),
+		__( 'Use Local Icon Styles', $theme_name ),
 		'cdn_fa_callback',
 		'general_icon_settings',
 		'general_icon_settings_section',
