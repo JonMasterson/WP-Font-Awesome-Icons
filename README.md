@@ -1,4 +1,4 @@
-WP Font Awesome Admin Icons
+WP Font Awesome Icons
 ====================
 
 This plugin will allow you to quickly and easily fire up Font Awesome icons within your local <a href="http://wordpress.org" target="_blank">WordPress</a> install. Upload and activate this plugin and you will be able to accomplish all of the following without touching a single line of code:
