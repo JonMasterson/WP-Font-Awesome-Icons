@@ -98,14 +98,16 @@ foreach ( $menu as $m ) {
 	if ( isset( $m[5] ) ) {
 		$poo = array( "?", "=", "/" );
 		$the_id = str_replace( $poo, "-", $m[5] );
-		$fa_icon = $icon_options[$the_id.'_icon'];
-		if ( isset( $fa_icon ) && $fa_icon != '' ) { 
+		if ( isset( $icon_options[$the_id.'_icon'] ) ) {
+			$fa_icon = $icon_options[$the_id.'_icon'];
+			if ( isset( $fa_icon ) && $fa_icon != '' ) { 
 ?>
 #adminmenu #<?php esc_attr_e( $the_id ); ?> div.wp-menu-image:before { 
 	font-family: FontAwesome !important;
 	content: <?php echo "'\\".esc_attr( $fa_icon )."' !important;"; ?> 
 }
 <?php 
+			}
 		}
 	}
 }
