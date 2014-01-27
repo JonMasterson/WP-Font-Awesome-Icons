@@ -663,80 +663,84 @@ function initialize_menu_icon_settings() {
 		$nav_menus = get_registered_nav_menus();
 		if ( $nav_menus ) {
 			foreach ( $nav_menus as $menu => $name ) {
-				$items = wp_get_nav_menu_items( $menu );
-				if ( $items ) {
-					add_settings_section(
-						$menu . '_section',
-						__( $name, $theme_name ),
-						'menu_icon_settings_callback',
-						'menu_icon_settings'
-					);
-					foreach ( $items as $i ) {
-						if ( isset( $i->title ) && isset ( $i->ID ) ) {
-							$before_field = array(
-								'id'        =>  'icn-menu-item-' . $i->ID,
-								'name'      =>  'icn-menu-item-' . $i->ID,
-								'desc'      =>  'Add icon before ' . $i->title,
-								'std'       =>  '',
-								'label_for' =>  '(Before) ' . $i->title,
-								'class'     =>  ''
-							);
-							$after_field = array(
-								'id'        =>  'icn-after-menu-item-' . $i->ID,
-								'name'      =>  'icn-after-menu-item-' . $i->ID,
-								'desc'      =>  'Add icon after ' . $i->title,
-								'std'       =>  '',
-								'label_for' =>  $i->title . ' (After)',
-								'class'     =>  ''
-							);
-							$size_before_field = array(
-								'id'        =>  'size-icn-menu-item-' . $i->ID,
-								'name'      =>  'size-icn-menu-item-' . $i->ID,
-								'desc'      =>  'Adjust size of icon before ' . $i->title,
-								'std'       =>  '',
-								'label_for' =>  '(Before) ' . $i->title . ' Size',
-								'class'     =>  ''
-							);
-							$size_after_field = array(
-								'id'        =>  'size-icn-after-menu-item-' . $i->ID,
-								'name'      =>  'size-icn-after-menu-item-' . $i->ID,
-								'desc'      =>  'Adjust size of icon after ' . $i->title,
-								'std'       =>  '',
-								'label_for' =>  $i->title . ' (After) Size',
-								'class'     =>  ''
-							);
-							add_settings_field( 
-								$i->ID, 
-								'(Before) ' . $i->title, 
-								'menu_icons_callback', 
-								'menu_icon_settings', 
-								$menu . '_section', 
-								$before_field 
-							);
-							add_settings_field( 
-								$i->ID . '-size', 
-								'(Before) ' . $i->title . ' Size', 
-								'menu_icons_size_callback', 
-								'menu_icon_settings', 
-								$menu . '_section', 
-								$size_before_field 
-							);
-							add_settings_field( 
-								$i->ID . '-after', 
-								$i->title . ' (After)', 
-								'menu_icons_callback', 
-								'menu_icon_settings', 
-								$menu . '_section', 
-								$after_field 
-							);
-							add_settings_field( 
-								$i->ID . '-after-size', 
-								$i->title . ' (After) Size', 
-								'menu_icons_size_callback', 
-								'menu_icon_settings', 
-								$menu . '_section', 
-								$size_after_field 
-							);
+				$nav_menu_locations = get_nav_menu_locations();
+				if ( $nav_menu_locations ) {
+					$menu_id = $nav_menu_locations[ $menu ]; 
+					$items = wp_get_nav_menu_items( $menu_id );
+					if ( $items ) {
+						  add_settings_section(
+							  $menu . '_section',
+							  __( $name, $theme_name ),
+							  'menu_icon_settings_callback',
+							  'menu_icon_settings'
+						  );
+						  foreach ( (array) $items as $key => $i ) {
+							  if ( isset( $i->title ) && isset( $i->ID ) ) {
+								  $before_field = array(
+									  'id'        =>  'icn-menu-item-' . $i->ID,
+									  'name'      =>  'icn-menu-item-' . $i->ID,
+									  'desc'      =>  'Add icon before ' . $i->title,
+									  'std'       =>  '',
+									  'label_for' =>  '(Before) ' . $i->title,
+									  'class'     =>  ''
+								  );
+								  $after_field = array(
+									  'id'        =>  'icn-after-menu-item-' . $i->ID,
+									  'name'      =>  'icn-after-menu-item-' . $i->ID,
+									  'desc'      =>  'Add icon after ' . $i->title,
+									  'std'       =>  '',
+									  'label_for' =>  $i->title . ' (After)',
+									  'class'     =>  ''
+								  );
+								  $size_before_field = array(
+									  'id'        =>  'size-icn-menu-item-' . $i->ID,
+									  'name'      =>  'size-icn-menu-item-' . $i->ID,
+									  'desc'      =>  'Adjust size of icon before ' . $i->title,
+									  'std'       =>  '',
+									  'label_for' =>  '(Before) ' . $i->title . ' Size',
+									  'class'     =>  ''
+								  );
+								  $size_after_field = array(
+									  'id'        =>  'size-icn-after-menu-item-' . $i->ID,
+									  'name'      =>  'size-icn-after-menu-item-' . $i->ID,
+									  'desc'      =>  'Adjust size of icon after ' . $i->title,
+									  'std'       =>  '',
+									  'label_for' =>  $i->title . ' (After) Size',
+									  'class'     =>  ''
+								  );
+								  add_settings_field( 
+									  $i->ID, 
+									  '(Before) ' . $i->title, 
+									  'menu_icons_callback', 
+									  'menu_icon_settings', 
+									  $menu . '_section', 
+									  $before_field 
+								  );
+								  add_settings_field( 
+									  $i->ID . '-size', 
+									  '(Before) ' . $i->title . ' Size', 
+									  'menu_icons_size_callback', 
+									  'menu_icon_settings', 
+									  $menu . '_section', 
+									  $size_before_field 
+								  );
+								  add_settings_field( 
+								  $i->ID . '-after', 
+								  $i->title . ' (After)', 
+								  'menu_icons_callback', 
+								  'menu_icon_settings', 
+								  $menu . '_section', 
+								  $after_field 
+								  );
+								  add_settings_field( 
+									  $i->ID . '-after-size', 
+									  $i->title . ' (After) Size', 
+									  'menu_icons_size_callback', 
+									  'menu_icon_settings', 
+									  $menu . '_section', 
+									  $size_after_field 
+								  );
+							}
 						}
 					}
 				}
@@ -840,18 +844,22 @@ function menu_icons_size_callback( $args ) {
 	$theme_name = $theme_obj->get( 'Name' );
     extract( $args );
     $options = get_option( 'menu_icon_settings' );
-	$options[$id] = stripslashes( $options[$id] );
-	$options[$id] = esc_attr( $options[$id] );
-	$html = '<select id="' . esc_attr( $id ) . '" name="menu_icon_settings[' . esc_attr( $id ) . ']">';
-	$html .= '<option value="default">' . __( 'Normal', $theme_name ) . '</option>';
-	$html .= '<option value="fa-lg"' . selected( $options[$id], 'fa-lg', false ) . '>' . __( 'Large', $theme_name ) . '</option>';
-	$html .= '<option value="fa-2x"' . selected( $options[$id], 'fa-2x', false ) . '>' . __( '2x', $theme_name ) . '</option>';
-	$html .= '<option value="fa-3x"' . selected( $options[$id], 'fa-3x', false ) . '>' . __( '3x', $theme_name ) . '</option>';	
-	$html .= '<option value="fa-4x"' . selected( $options[$id], 'fa-4x', false ) . '>' . __( '4x', $theme_name ) . '</option>';	
-	$html .= '<option value="fa-5x"' . selected( $options[$id], 'fa-5x', false ) . '>' . __( '5x', $theme_name ) . '</option>';	
-	$html .= '</select>';
-	$html .= '<br /><br /><hr />';
-	echo $html;
+	if ( isset( $options[$id] ) && $options[$id] != "" ) {
+		$options_val = stripslashes( $options[$id] );
+		$options_val = esc_attr( $options[$id] );
+	} else {
+		$options_val = '';
+	}
+		$html = '<select id="' . esc_attr( $id ) . '" name="menu_icon_settings[' . esc_attr( $id ) . ']">';
+		$html .= '<option value="default">' . __( 'Normal', $theme_name ) . '</option>';
+		$html .= '<option value="fa-lg"' . selected( $options_val, 'fa-lg', false ) . '>' . __( 'Large', $theme_name ) . '</option>';
+		$html .= '<option value="fa-2x"' . selected( $options_val, 'fa-2x', false ) . '>' . __( '2x', $theme_name ) . '</option>';
+		$html .= '<option value="fa-3x"' . selected( $options_val, 'fa-3x', false ) . '>' . __( '3x', $theme_name ) . '</option>';	
+		$html .= '<option value="fa-4x"' . selected( $options_val, 'fa-4x', false ) . '>' . __( '4x', $theme_name ) . '</option>';	
+		$html .= '<option value="fa-5x"' . selected( $options_val, 'fa-5x', false ) . '>' . __( '5x', $theme_name ) . '</option>';	
+		$html .= '</select>';
+		$html .= '<br /><br /><hr />';
+		echo $html;
 }
 
 
