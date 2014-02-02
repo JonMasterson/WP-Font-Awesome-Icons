@@ -8,10 +8,14 @@ Author: Jon Masterson
 Author URI: http://jonmasterson.com
 Author Email: hello@jonmasterson.com
 Credits:
-    The Font Awesome icon set was created by Dave Gandy (dave@davegandy.com)
-     http://fontawesome.io
+
+    The Font Awesome icon set was created by Dave Gandy (dave@davegandy.com) http://fontawesome.io
+    
+    The TinyMCE portion of this plugin was created by Rachel Baker (https://github.com/rachelbaker)
+    for her own Font Awesome for WordPress Plugin (https://github.com/rachelbaker/Font-Awesome-WordPress-Plugin)
 
 License:
+
   Copyright (C) 2014 Jon Masterson
 
     This program is free software: you can redistribute it and/or modify
