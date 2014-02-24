@@ -63,10 +63,12 @@ class WPFontAwesomeIcons {
 		
 		$options = get_option( 'general_icon_settings' );
 		if ( !isset( $options['frontend_icons'] ) || $options['frontend_icons'] == 0 ) {
+			if ( !isset( $options['the_nav_icons'] ) || $options['the_nav_icons'] == 0 ) {
+				add_filter( 'wp_nav_menu' , array( &$this, 'nav_menu_icn_callback' ), 10, 2 );
+			}
 			add_action( 'wp_enqueue_scripts', array( &$this, 'register_plugin_styles' ) );
 			add_shortcode( 'icon', array( $this, 'icon_shortcode' ) );
 			add_filter( 'widget_text', 'do_shortcode' );
-			add_filter( 'wp_nav_menu' , array( &$this, 'nav_menu_icn_callback' ), 10, 2 );
 			if ( ( current_user_can( 'edit_posts' ) || current_user_can( 'edit_pages' ) ) && get_user_option( 'rich_editing' ) ) {
 				add_filter( 'mce_external_plugins', array( &$this, 'register_mce_plugin' ) );
 				add_filter( 'mce_buttons', array( &$this, 'add_mce_button' ) );
