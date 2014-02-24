@@ -58,9 +58,11 @@ function display_icon_settings( $active_tab = '' ) {
 	<h2 class="nav-tab-wrapper">
 			<a href="?page=icon_settings&tab=icn_general_settings" class="nav-tab <?php echo $active_tab == 'icn_general_settings' ? 'nav-tab-active' : ''; ?>"><?php _e( 'General', $theme_name ); ?></a>
 			<a href="?page=icon_settings&tab=icn_admin_settings" class="nav-tab <?php echo $active_tab == 'icn_admin_settings' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Admin Menu', $theme_name ); ?></a>
-            <?php if ( !isset( $options['frontend_icons'] ) || $options['frontend_icons'] == 0 )  : ?>
-			<a href="?page=icon_settings&tab=icn_menu_settings" class="nav-tab <?php echo $active_tab == 'icn_menu_settings' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Nav Menu', $theme_name ); ?></a>
-            <?php endif; ?>
+            <?php if ( !isset( $options['frontend_icons'] ) || $options['frontend_icons'] == 0 )  : 
+				if ( !isset( $options['the_nav_icons'] ) || $options['the_nav_icons'] == 0 )  : ?>
+                    <a href="?page=icon_settings&tab=icn_menu_settings" class="nav-tab <?php echo $active_tab == 'icn_menu_settings' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Nav Menu', $theme_name ); ?></a>
+                <?php endif;
+				endif; ?>
 		</h2>
         
     <form method="post" enctype="multipart/form-data" action="options.php">
@@ -495,6 +497,7 @@ function display_icon_settings( $active_tab = '' ) {
 function default_general_icon_settings() {
 	$defaults = array(
 		'frontend_icons' =>	'',
+		'the_nav_icons' =>	'',
 		'cdn_fa' =>	'',
 	);
 	return apply_filters( 'default_general_icon_settings', $defaults );
@@ -570,6 +573,17 @@ function initialize_general_icon_settings() {
 		'general_icon_settings_section',
 		array(
 			__( 'Disable Font Awesome icons on the front end of your site.', $theme_name ),
+		)
+	);
+	
+	add_settings_field(	
+		'the_nav_icons',
+		__( 'Disable Nav Menu Icons', $theme_name ),
+		'the_nav_icons_callback',
+		'general_icon_settings',
+		'general_icon_settings_section',
+		array(
+			__( 'Disable Font Awesome icons in the nav menu of your site.', $theme_name ),
 		)
 	);
 	
@@ -652,94 +666,94 @@ add_action( 'admin_init', 'initialize_admin_icon_settings' );
 function initialize_menu_icon_settings() {
 	$options = get_option('general_icon_settings');
 	if ( !isset( $options['frontend_icons'] ) || $options['frontend_icons'] == 0 ) {
-
-		$theme_obj = wp_get_theme();
-		$theme_name = $theme_obj->get( 'Name' );
+		if ( !isset( $options['the_nav_icons'] ) || $options['the_nav_icons'] == 0 ) {
+			$theme_obj = wp_get_theme();
+			$theme_name = $theme_obj->get( 'Name' );
+			if ( false == get_option( 'menu_icon_settings' ) ) {	
+				add_option( 'menu_icon_settings', apply_filters( 'default_menu_icon_settings', default_menu_icon_settings() ) );
+			}
 			
-		if ( false == get_option( 'menu_icon_settings' ) ) {	
-			add_option( 'menu_icon_settings', apply_filters( 'default_menu_icon_settings', default_menu_icon_settings() ) );
-		}
-		
-		$nav_menus = get_registered_nav_menus();
-		if ( $nav_menus ) {
-			foreach ( $nav_menus as $menu => $name ) {
-				$nav_menu_locations = get_nav_menu_locations();
-				if ( $nav_menu_locations ) {
-					$menu_id = $nav_menu_locations[ $menu ]; 
-					$items = wp_get_nav_menu_items( $menu_id );
-					if ( $items ) {
-						  add_settings_section(
-							  $menu . '_section',
-							  __( $name, $theme_name ),
-							  'menu_icon_settings_callback',
-							  'menu_icon_settings'
-						  );
-						  foreach ( (array) $items as $key => $i ) {
-							  if ( isset( $i->title ) && isset( $i->ID ) ) {
-								  $before_field = array(
-									  'id'        =>  'icn-menu-item-' . $i->ID,
-									  'name'      =>  'icn-menu-item-' . $i->ID,
-									  'desc'      =>  'Add icon before ' . $i->title,
-									  'std'       =>  '',
-									  'label_for' =>  '(Before) ' . $i->title,
-									  'class'     =>  ''
-								  );
-								  $after_field = array(
-									  'id'        =>  'icn-after-menu-item-' . $i->ID,
-									  'name'      =>  'icn-after-menu-item-' . $i->ID,
-									  'desc'      =>  'Add icon after ' . $i->title,
-									  'std'       =>  '',
-									  'label_for' =>  $i->title . ' (After)',
-									  'class'     =>  ''
-								  );
-								  $size_before_field = array(
-									  'id'        =>  'size-icn-menu-item-' . $i->ID,
-									  'name'      =>  'size-icn-menu-item-' . $i->ID,
-									  'desc'      =>  'Adjust size of icon before ' . $i->title,
-									  'std'       =>  '',
-									  'label_for' =>  '(Before) ' . $i->title . ' Size',
-									  'class'     =>  ''
-								  );
-								  $size_after_field = array(
-									  'id'        =>  'size-icn-after-menu-item-' . $i->ID,
-									  'name'      =>  'size-icn-after-menu-item-' . $i->ID,
-									  'desc'      =>  'Adjust size of icon after ' . $i->title,
-									  'std'       =>  '',
-									  'label_for' =>  $i->title . ' (After) Size',
-									  'class'     =>  ''
-								  );
-								  add_settings_field( 
-									  $i->ID, 
-									  '(Before) ' . $i->title, 
+			$nav_menus = get_registered_nav_menus();
+			if ( $nav_menus ) {
+				foreach ( $nav_menus as $menu => $name ) {
+					$nav_menu_locations = get_nav_menu_locations();
+					if ( $nav_menu_locations ) {
+						$menu_id = $nav_menu_locations[ $menu ]; 
+						$items = wp_get_nav_menu_items( $menu_id );
+						if ( $items ) {
+							  add_settings_section(
+								  $menu . '_section',
+								  __( $name, $theme_name ),
+								  'menu_icon_settings_callback',
+								  'menu_icon_settings'
+							  );
+							  foreach ( (array) $items as $key => $i ) {
+								  if ( isset( $i->title ) && isset( $i->ID ) ) {
+									  $before_field = array(
+										  'id'        =>  'icn-menu-item-' . $i->ID,
+										  'name'      =>  'icn-menu-item-' . $i->ID,
+										  'desc'      =>  'Add icon before ' . $i->title,
+										  'std'       =>  '',
+										  'label_for' =>  '(Before) ' . $i->title,
+										  'class'     =>  ''
+									  );
+									  $after_field = array(
+										  'id'        =>  'icn-after-menu-item-' . $i->ID,
+										  'name'      =>  'icn-after-menu-item-' . $i->ID,
+										  'desc'      =>  'Add icon after ' . $i->title,
+										  'std'       =>  '',
+										  'label_for' =>  $i->title . ' (After)',
+										  'class'     =>  ''
+									  );
+									  $size_before_field = array(
+										  'id'        =>  'size-icn-menu-item-' . $i->ID,
+										  'name'      =>  'size-icn-menu-item-' . $i->ID,
+										  'desc'      =>  'Adjust size of icon before ' . $i->title,
+										  'std'       =>  '',
+										  'label_for' =>  '(Before) ' . $i->title . ' Size',
+										  'class'     =>  ''
+									  );
+									  $size_after_field = array(
+										  'id'        =>  'size-icn-after-menu-item-' . $i->ID,
+										  'name'      =>  'size-icn-after-menu-item-' . $i->ID,
+										  'desc'      =>  'Adjust size of icon after ' . $i->title,
+										  'std'       =>  '',
+										  'label_for' =>  $i->title . ' (After) Size',
+										  'class'     =>  ''
+									  );
+									  add_settings_field( 
+										  $i->ID, 
+										  '(Before) ' . $i->title, 
+										  'menu_icons_callback', 
+										  'menu_icon_settings', 
+										  $menu . '_section', 
+										  $before_field 
+									  );
+									  add_settings_field( 
+										  $i->ID . '-size', 
+										  '(Before) ' . $i->title . ' Size', 
+										  'menu_icons_size_callback', 
+										  'menu_icon_settings', 
+										  $menu . '_section', 
+										  $size_before_field 
+									  );
+									  add_settings_field( 
+									  $i->ID . '-after', 
+									  $i->title . ' (After)', 
 									  'menu_icons_callback', 
 									  'menu_icon_settings', 
 									  $menu . '_section', 
-									  $before_field 
-								  );
-								  add_settings_field( 
-									  $i->ID . '-size', 
-									  '(Before) ' . $i->title . ' Size', 
-									  'menu_icons_size_callback', 
-									  'menu_icon_settings', 
-									  $menu . '_section', 
-									  $size_before_field 
-								  );
-								  add_settings_field( 
-								  $i->ID . '-after', 
-								  $i->title . ' (After)', 
-								  'menu_icons_callback', 
-								  'menu_icon_settings', 
-								  $menu . '_section', 
-								  $after_field 
-								  );
-								  add_settings_field( 
-									  $i->ID . '-after-size', 
-									  $i->title . ' (After) Size', 
-									  'menu_icons_size_callback', 
-									  'menu_icon_settings', 
-									  $menu . '_section', 
-									  $size_after_field 
-								  );
+									  $after_field 
+									  );
+									  add_settings_field( 
+										  $i->ID . '-after-size', 
+										  $i->title . ' (After) Size', 
+										  'menu_icons_size_callback', 
+										  'menu_icon_settings', 
+										  $menu . '_section', 
+										  $size_after_field 
+									  );
+								}
 							}
 						}
 					}
@@ -769,6 +783,13 @@ function frontend_icons_callback( $args ) {
 	$options = get_option('general_icon_settings');
 	$html = '<input type="checkbox" id="frontend_icons" name="general_icon_settings[frontend_icons]" value="1" ' . checked( 1, isset( $options['frontend_icons'] ) ? $options['frontend_icons'] : 0, false ) . '/>'; 
 	$html .= '<label for="frontend_icons">&nbsp;'  . $args[0] . '</label>'; 
+	echo $html;
+}
+
+function the_nav_icons_callback( $args ) {
+	$options = get_option('general_icon_settings');
+	$html = '<input type="checkbox" id="the_nav_icons" name="general_icon_settings[the_nav_icons]" value="1" ' . checked( 1, isset( $options['the_nav_icons'] ) ? $options['the_nav_icons'] : 0, false ) . '/>'; 
+	$html .= '<label for="the_nav_icons">&nbsp;'  . $args[0] . '</label>'; 
 	echo $html;
 }
 
