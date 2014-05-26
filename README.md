@@ -47,15 +47,15 @@ You can use a shortcode in your posts, pages and even widgets to display a Font 
 
 Pencil icon
 
-`[icon name=icon-pencil]`
+`[fa_icon name=pencil]`
 
 Phone icon
 
-`[icon name=icon-phone]`
+`[fa_icon name=phone]`
 
 Chevron left icon
 
-`[icon name=icon-chevron-left]`
+`[fa_icon name=chevron-left]`
 
 ### TinyMCE Plugin
 
@@ -64,7 +64,7 @@ You can also select the icon you would like to add to your post or page content 
 Contributors
 ------
 
-Thanks to <a href="https://github.com/davegandy" target="_blank">@davegandy</a> for creating the wonderful and amazing <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a>, and to <a href="http://rachelbaker.me" target="_blank">Rachel Baker</a> for creating <a href="http://wordpress.org/plugins/font-awesome/" target="_blank">Font Awesome for WordPress</a>, and the TinyMCE portion of this plugin.
+Thanks to <a href="https://github.com/davegandy" target="_blank">@davegandy</a> for creating the wonderful and amazing <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a>, and to <a href="http://rachelbaker.me" target="_blank">Rachel Baker</a>.
 
 Troubleshooting
 ------
