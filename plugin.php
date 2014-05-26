@@ -3,16 +3,14 @@
 Plugin Name: WP Font Awesome Icons
 Plugin URI: http://www.jonmasterson.com
 Description: Utilize the Font Awesome icon set to replace admin menu icons, easily add icons to posts from the TinyMCE dropdown menu, and quickly add icons to your native navigation menus.
-Version: 4.0.3
+Version: 4.1.0
 Author: Jon Masterson
 Author URI: http://jonmasterson.com
 Author Email: hello@jonmasterson.com
 Credits:
 
-    The Font Awesome icon set was created by Dave Gandy (dave@davegandy.com) http://fontawesome.io
-    
-    The TinyMCE portion of this plugin was created by Rachel Baker (https://github.com/rachelbaker)
-    for her own Font Awesome for WordPress Plugin (https://github.com/rachelbaker/Font-Awesome-WordPress-Plugin)
+    Thanks to Dave Gandy for the Font Awesome icon set (dave@davegandy.com) http://fontawesome.io
+    Thanks to Rachel Baker for the inspiration (https://github.com/rachelbaker)
 
 License:
 
@@ -34,7 +32,7 @@ License:
 
 class WPFontAwesomeIcons {
     private static $instance;
-    const VERSION = '4.0.3';
+    const VERSION = '4.1.0';
 	
 	private static function has_instance() {
         return isset( self::$instance ) && self::$instance != null;
@@ -67,21 +65,16 @@ class WPFontAwesomeIcons {
 				add_filter( 'wp_nav_menu' , array( &$this, 'nav_menu_icn_callback' ), 10, 2 );
 			}
 			add_action( 'wp_enqueue_scripts', array( &$this, 'register_plugin_styles' ) );
-			add_shortcode( 'icon', array( $this, 'icon_shortcode' ) );
+			add_shortcode( 'fa_icon', array( $this, 'fa_icon_shortcode' ) );
 			add_filter( 'widget_text', 'do_shortcode' );
-			if ( ( current_user_can( 'edit_posts' ) || current_user_can( 'edit_pages' ) ) && get_user_option( 'rich_editing' ) ) {
-				add_filter( 'mce_external_plugins', array( &$this, 'register_mce_plugin' ) );
-				add_filter( 'mce_buttons', array( &$this, 'add_mce_button' ) );
-				add_filter( 'mce_css', array( &$this, 'add_mce_editor_sytle' ) );
-				add_filter( 'tiny_mce_before_init', array( &$this, 'change_mce_options' ) );
-			}
+			add_action('admin_head', array( $this, 'fa_add_mce_button' ) );
 		}
     }
 
     public function register_plugin_styles() {
 		$options = get_option( 'general_icon_settings' );
 		if ( !isset( $options['cdn_fa'] ) || $options['cdn_fa'] == 0 ) {
-			wp_enqueue_style( 'icon-styles', 'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', false, '4.0.3' );
+			wp_enqueue_style( 'icon-styles', 'http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', false, '4.0.3' );
 		} else {
         	wp_enqueue_style( 'icon-styles', plugins_url( 'assets/css/font-awesome.min.css', __FILE__ ), false, '4.0.3' );
 		}
@@ -118,38 +111,45 @@ foreach ( $menu as $m ) {
 ?>
 </style>
 <?php }
+
+	/**
+	 * Shortcode
+	 */
+	 public function fa_icon_shortcode($atts) { // set up shortcode
+        extract(shortcode_atts(array(
+                    'name'  => 'pencil',
+                ), $atts));
+        return '<i class="fa fa-' . sanitize_html_class( $name ) . '"></i>';
+    }
 	
 	/**
 	 * TinyMCE Editor
 	 */
-	public function change_mce_options( $init ) { 
-		$init[ 'extended_valid_elements' ] = 'i[*]'; // prevent <i> from being eliminated in editor
-		return $init;
+	public function fa_add_mce_button() {
+		if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
+			return;
+		}
+		if ( 'true' == get_user_option( 'rich_editing' ) ) {
+			add_filter( 'mce_external_plugins', array( $this, 'fa_add_tinymce_plugin' ) );
+			add_filter( 'mce_buttons', array( $this, 'fa_register_mce_button' ) );
+			add_filter( 'mce_css', array( &$this, 'fa_mce_editor_sytle' ) );
+			wp_enqueue_style( 'mce-override', plugins_url( 'assets/css/mce-override.css', __FILE__ ), false, '1.0' );
+		}
 	}
-	
-	public function icon_shortcode($params) { // set up shortcode
-        extract(shortcode_atts(array(
-                    'name'  => '',
-                ), $params));
-        return '<i class="' . sanitize_html_class( $name ) . '"></i>';
-    }
-	
-	public function register_mce_plugin( $plugin_array ) { // register TinyMCE plugin
-        $plugin_array[ 'font_awesome_icons' ] = plugins_url( 'assets/js/mce-icons.js', __FILE__ );
+	public function fa_add_tinymce_plugin( $plugin_array ) {
+		$plugin_array['fa_mce_button'] = plugins_url( 'assets/js/mce-fa-icons.js', __FILE__ );
 		return $plugin_array;
-    }
-	
-    public function add_mce_button( $buttons ) { // add icon selector to editor
-        array_push( $buttons, '|', 'fontAwesomeIconSelect' );
-        return $buttons;
-    }
-
-    public function add_mce_editor_sytle($mce_css) { // add icon styles to editor
+	}
+	public function fa_register_mce_button( $buttons ) {
+		array_push( $buttons, 'fa_mce_button' );
+		return $buttons;
+	}
+	public function fa_mce_editor_sytle($mce_css) { // add icon styles to editor
 		$options = get_option( 'general_icon_settings' );
 		if ( ! empty( $mce_css ) )
 			$mce_css .= ',';
 		if ( !isset( $options['cdn_fa'] ) || $options['cdn_fa'] == 0 ) {
-			$mce_css .= 'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css';
+			$mce_css .= 'http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css';
 		} else {
 			$mce_css .= plugins_url( 'assets/css/font-awesome.min.css', __FILE__ );
 		}
