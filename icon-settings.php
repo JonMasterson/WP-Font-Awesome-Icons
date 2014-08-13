@@ -961,14 +961,6 @@ function admin_icon_settings_callback( $args ) {
 /**
  * Nav Menu Icon Settings
  */
-function add_icon_nav_class( $classes, $item ) {
-    if ( $item->title == 'Blog' ) {
-        $classes[] = 'fa';
-    }
-    return $classes;
-}
-add_filter( 'nav_menu_css_class', 'add_icon_nav_class', 10, 2 );
- 
 function menu_icon_settings_callback() {}
 
 function menu_icons_callback( $args ) {
