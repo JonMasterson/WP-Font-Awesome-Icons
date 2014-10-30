@@ -3,7 +3,7 @@
 Plugin Name: WP Font Awesome Icons
 Plugin URI: http://www.jonmasterson.com
 Description: Utilize the Font Awesome icon set to replace admin menu icons, easily add icons to posts from the TinyMCE dropdown menu, and quickly add icons to your native navigation menus.
-Version: 4.1.0
+Version: 4.2.0
 Author: Jon Masterson
 Author URI: http://jonmasterson.com
 Author Email: hello@jonmasterson.com
@@ -32,7 +32,7 @@ License:
 
 class WPFontAwesomeIcons {
     private static $instance;
-    const VERSION = '4.1.0';
+    const VERSION = '4.2.0';
 	
 	private static function has_instance() {
         return isset( self::$instance ) && self::$instance != null;
@@ -74,9 +74,9 @@ class WPFontAwesomeIcons {
     public function register_plugin_styles() {
 		$options = get_option( 'general_icon_settings' );
 		if ( !isset( $options['cdn_fa'] ) || $options['cdn_fa'] == 0 ) {
-			wp_enqueue_style( 'icon-styles', 'http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', false, '4.0.3' );
+			wp_enqueue_style( 'icon-styles', 'http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', false, '4.2.0' );
 		} else {
-        	wp_enqueue_style( 'icon-styles', plugins_url( 'assets/css/font-awesome.min.css', __FILE__ ), false, '4.0.3' );
+        	wp_enqueue_style( 'icon-styles', plugins_url( 'assets/css/font-awesome.min.css', __FILE__ ), false, '4.2.0' );
 		}
     }
 	
@@ -149,7 +149,7 @@ foreach ( $menu as $m ) {
 		if ( ! empty( $mce_css ) )
 			$mce_css .= ',';
 		if ( !isset( $options['cdn_fa'] ) || $options['cdn_fa'] == 0 ) {
-			$mce_css .= 'http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css';
+			$mce_css .= 'http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css';
 		} else {
 			$mce_css .= plugins_url( 'assets/css/font-awesome.min.css', __FILE__ );
 		}
